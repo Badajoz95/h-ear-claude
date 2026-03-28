@@ -101,7 +101,7 @@ For clients that support remote MCP servers via Streamable HTTP:
 {
   "mcpServers": {
     "h-ear": {
-      "url": "https://ncm-apim.azure-api.net/h-ear-enterprise-api-prod/mcp",
+      "url": "https://api.h-ear.world/mcp",
       "headers": {
         "X-NCM-Api-Key": "ncm_sk_your_key_here"
       }
@@ -114,9 +114,9 @@ For clients that support remote MCP servers via Streamable HTTP:
 
 | Environment | Endpoint |
 |-------------|----------|
-| Production | `https://ncm-apim.azure-api.net/h-ear-enterprise-api-prod/mcp` |
-| Staging | `https://ncm-apim.azure-api.net/h-ear-enterprise-api-staging/mcp` |
-| Development | `https://ncm-apim.azure-api.net/h-ear-enterprise-api-dev/mcp` |
+| Production | `https://api.h-ear.world/mcp` |
+| Staging | `https://api-staging.h-ear.world/mcp` |
+| Development | `https://api-dev.h-ear.world/mcp` |
 
 ---
 

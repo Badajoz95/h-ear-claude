@@ -58,7 +58,7 @@ Two tools (`healthCheck`, `listClasses`) work without authentication.
 | Transport | Endpoint |
 |-----------|----------|
 | stdio (npm) | `npx @h-ear/mcp-server --key YOUR_KEY` |
-| Streamable HTTP | `https://ncm-apim.azure-api.net/h-ear-enterprise-api-prod/mcp` |
+| Streamable HTTP | `https://api.h-ear.world/mcp` |
 
 ## Documentation
 
