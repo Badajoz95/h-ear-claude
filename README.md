@@ -10,7 +10,7 @@ H-ear connects Claude to the [H-ear World](https://h-ear.world) audio classifica
 npx @h-ear/mcp-server --key YOUR_API_KEY
 ```
 
-That's it. Claude now has 7 audio classification tools, a live status resource, and a guided classification prompt.
+That's it. Claude now has 14 tools (classification, account, webhooks), a live status resource, and a guided classification prompt.
 
 ## Tools
 
@@ -18,11 +18,18 @@ That's it. Claude now has 7 audio classification tools, a live status resource, 
 |------|------|-------------|
 | `classifyAudio` | Key | Classify audio from a file or URL. Async submit + poll. Large files auto-chunked. |
 | `classifyBatch` | Key | Batch classify up to 50 files at once. |
-| `listClasses` | None | Browse 7,000+ sound classes across 3 taxonomies. |
+| `listClasses` | None | Browse 521+ sound classes across 3 taxonomies (7,000+ including species). |
 | `healthCheck` | None | API liveness check — status, version, deployment timestamp. |
 | `usage` | Key | API quota: minutes used, calls today, remaining balance. |
 | `listJobs` | Key | Recent classification job history with pagination. |
 | `getJob` | Key | Detailed job result with all detected sound events. |
+| `createWebhook` | Bearer | Create enterprise webhook with event/taxonomy/tier filters. Returns signing secret once. |
+| `listWebhooks` | Bearer | List all enterprise webhook registrations. |
+| `getWebhook` | Bearer | Get webhook details including filter config and delivery stats. |
+| `updateWebhook` | Bearer | Update webhook URL, events, status (active/paused), or filters. |
+| `deleteWebhook` | Bearer | Permanently delete a webhook registration. |
+| `pingWebhook` | Bearer | Send a test.ping event to verify connectivity and signing. |
+| `listWebhookDeliveries` | Bearer | Delivery audit trail with response status and timing. |
 
 Plus:
 - **Resource** `h-ear://status` — live API status with taxonomies and class counts
@@ -49,7 +56,7 @@ Files over 25 MB are automatically split into overlapping chunks using ffmpeg, c
 Get an API key from [h-ear.world](https://h-ear.world) (Enterprise plan). Pass it via:
 - Environment variable: `HEAR_API_KEY`
 - CLI flag: `--key YOUR_KEY`
-- OAuth 2.0 (automatic via claude.ai Connectors Directory)
+- OAuth 2.1 + PKCE (automatic via claude.ai Connectors Directory — handled by your MCP client)
 
 Two tools (`healthCheck`, `listClasses`) work without authentication.
 

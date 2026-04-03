@@ -1,6 +1,6 @@
 # Authentication
 
-H-ear uses API keys for direct access and OAuth 2.0 for the Claude Connectors Directory.
+H-ear uses API keys for direct access and OAuth 2.1 + PKCE for the Claude Connectors Directory.
 
 ---
 
@@ -10,11 +10,18 @@ H-ear uses API keys for direct access and OAuth 2.0 for the Claude Connectors Di
 |------|---------------|
 | `healthCheck` | None |
 | `listClasses` | None |
-| `classifyAudio` | API Key required |
-| `classifyBatch` | API Key required |
-| `usage` | API Key required |
-| `listJobs` | API Key required |
-| `getJob` | API Key required |
+| `classifyAudio` | API Key |
+| `classifyBatch` | API Key |
+| `usage` | API Key |
+| `listJobs` | API Key |
+| `getJob` | API Key |
+| `createWebhook` | Bearer token (enterprise subscription) |
+| `listWebhooks` | Bearer token (enterprise subscription) |
+| `getWebhook` | Bearer token (enterprise subscription) |
+| `updateWebhook` | Bearer token (enterprise subscription) |
+| `deleteWebhook` | Bearer token (enterprise subscription) |
+| `pingWebhook` | Bearer token (enterprise subscription) |
+| `listWebhookDeliveries` | Bearer token (enterprise subscription) |
 | Resource `h-ear://status` | None |
 
 ---
@@ -57,16 +64,17 @@ npx @h-ear/mcp-server --key ncm_sk_your_key_here
 
 ---
 
-## OAuth 2.0
+## OAuth 2.1 + PKCE
 
-When using H-ear through the **Claude Connectors Directory** (claude.ai), authentication is handled automatically via OAuth 2.0.
+When using H-ear through the **Claude Connectors Directory** (claude.ai) or via `claude mcp add --transport http`, authentication is handled automatically via OAuth 2.1 + PKCE.
 
-- **Flow:** Authorization Code + PKCE
+- **Flow:** Authorization Code + PKCE (RFC 7636)
 - **Provider:** Auth0 (`auth.h-ear.world`)
-- **Token lifetime:** 1 hour (auto-refreshed)
+- **Discovery:** RFC 9728 Protected Resource Metadata — Claude auto-discovers the Auth0 endpoints
+- **Token lifetime:** 1 hour (Claude manages refresh automatically)
 - **Scopes:** `openid profile email`
 
-No manual key configuration is needed — Claude handles the OAuth flow when you connect H-ear through the Connectors Directory.
+No manual key configuration is needed — Claude handles the full OAuth flow. On first use, a browser window opens for Auth0 login.
 
 ---
 
