@@ -1,9 +1,9 @@
 {
   "name": "h-ear-claude",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Documentation for H-ear MCP Server — AI-powered sound classification for Claude",
   "dependencies": {
-    "@h-ear/mcp-server": "^1.0.4"
+    "@h-ear/mcp-server": "^1.0.5"
   },
   "license": "MIT"
 }
